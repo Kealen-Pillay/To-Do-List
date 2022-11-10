@@ -1,9 +1,10 @@
+const getItems = require("../server/controllers/items");
 const express = require("express");
 var cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-
+app.use("/items", getItems);
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 

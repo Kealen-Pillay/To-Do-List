@@ -1,3 +1,5 @@
-export const getItems = (req, res) => {
+const getItems = (req, res) => {
   res.send("Working");
 };
+
+module.exports = getItems;
