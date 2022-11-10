@@ -1,17 +1,17 @@
-const getItems = require("../server/controllers/items");
 const express = require("express");
 var cors = require("cors");
 const mongoose = require("mongoose");
+const tasks = require("./routes/items");
 
 const app = express();
-app.use("/items", getItems);
+const PORT = process.env.PORT || 5000;
+
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
+app.use("/tasks", tasks);
 
 const CONNECTION_URL =
   "mongodb+srv://test:test@to-do-app.ygzzapa.mongodb.net/?retryWrites=true&w=majority";
-
-const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(CONNECTION_URL, {
