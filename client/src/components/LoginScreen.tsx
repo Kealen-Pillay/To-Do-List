@@ -28,12 +28,28 @@ const LoginScreen = () => {
       >
         <Box
           sx={{
-            // background: "red",
-            width: "50%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "20%",
+            width: "40%",
+            marginTop: "5%",
+            marginBottom: "5%",
+          }}
+        >
+          <img src={require("../images/tickIcon.png")} alt="" height="100%" />
+          <Typography sx={{ fontWeight: "bold", fontSize: 40 }}>
+            To Do
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            width: "40%",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            margin: "1%",
           }}
         >
           <Typography>Username:</Typography>
@@ -41,12 +57,12 @@ const LoginScreen = () => {
         </Box>
         <Box
           sx={{
-            // background: "green",
-            width: "50%",
+            width: "40%",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            margin: "1%",
           }}
         >
           <Typography>Password:</Typography>
