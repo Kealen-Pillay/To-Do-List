@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 
 const LoginScreen = () => {
   return (
@@ -20,8 +20,39 @@ const LoginScreen = () => {
           backgroundColor: "white",
           opacity: 0.5,
           borderRadius: 5,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
         }}
-      ></Box>
+      >
+        <Box
+          sx={{
+            // background: "red",
+            width: "50%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography>Username:</Typography>
+          <TextField variant="outlined" />
+        </Box>
+        <Box
+          sx={{
+            // background: "green",
+            width: "50%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography>Password:</Typography>
+          <TextField variant="outlined" />
+        </Box>
+      </Box>
     </Box>
   );
 };
