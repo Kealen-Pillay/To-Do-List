@@ -18,8 +18,8 @@ const RegisterScreen = () => {
     },
   };
 
-  const navigateRegister = (): void => {
-    navigate("/register");
+  const navigateTasks = (): void => {
+    navigate("/tasks");
   };
 
   const navigateLogin = (): void => {
@@ -119,7 +119,7 @@ const RegisterScreen = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={navigateLogin}
+            onClick={navigateTasks}
           >
             <Typography>Create Account</Typography>
           </Button>
@@ -133,7 +133,7 @@ const RegisterScreen = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={navigateRegister}
+            onClick={navigateLogin}
           >
             <Typography>Login</Typography>
           </Button>
