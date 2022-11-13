@@ -9,6 +9,10 @@ const TaskSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  owner: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Task = mongoose.model("task", TaskSchema);
