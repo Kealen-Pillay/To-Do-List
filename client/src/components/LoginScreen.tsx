@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const LoginScreen = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +20,14 @@ const LoginScreen = () => {
   };
 
   const loginUser = async () => {
-
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/tasks");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      alert("No User Exists!");
+    }
   };
 
   const navigateRegister = (): void => {
@@ -26,7 +35,11 @@ const LoginScreen = () => {
   };
 
   const navigateTasks = (): void => {
-    navigate("/tasks");
+    if (email && password) {
+      loginUser();
+    } else {
+      alert("Please Provide Both An Email and Password");
+    }
   };
 
   return (
@@ -84,8 +97,8 @@ const LoginScreen = () => {
             type="text"
             style={styles.input}
             placeholder="Email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
