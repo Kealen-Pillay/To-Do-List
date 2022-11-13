@@ -100,7 +100,6 @@ const LoginScreen = () => {
               height: "45%",
               ":hover": {
                 backgroundColor: "black",
-                transform: "scale(1.05)",
               },
             }}
           >
@@ -114,7 +113,6 @@ const LoginScreen = () => {
               height: "45%",
               ":hover": {
                 backgroundColor: "black",
-                transform: "scale(1.05)",
               },
             }}
           >
