@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
@@ -32,7 +32,7 @@ const RegisterScreen = () => {
   };
 
   const navigateTasks = (): void => {
-    let pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let pattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email && password && confirmPassword) {
       if (pattern.test(email)) {
         if (password.length >= 6) {

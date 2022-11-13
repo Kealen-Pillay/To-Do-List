@@ -35,7 +35,7 @@ const LoginScreen = () => {
   };
 
   const navigateTasks = (): void => {
-    let pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let pattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email && password) {
       if (pattern.test(email)) {
         loginUser();
