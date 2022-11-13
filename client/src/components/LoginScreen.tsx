@@ -7,14 +7,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const navigateRegister = (): void => {
-    navigate("/register");
-  };
-
-  const navigateTasks = (): void => {
-    navigate("/tasks");
-  };
-
   const styles = {
     input: {
       borderRadius: 25,
@@ -23,6 +15,14 @@ const LoginScreen = () => {
       border: "1px solid black",
       paddingLeft: "0.5rem",
     },
+  };
+
+  const navigateRegister = (): void => {
+    navigate("/register");
+  };
+
+  const navigateTasks = (): void => {
+    navigate("/tasks");
   };
 
   return (
@@ -95,7 +95,7 @@ const LoginScreen = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "40%",
+            width: "30%",
             height: "20%",
             justifyContent: "space-between",
             alignItems: "center",
@@ -111,9 +111,9 @@ const LoginScreen = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={navigateRegister}
+            onClick={navigateTasks}
           >
-            <Typography>Register</Typography>
+            <Typography>Login</Typography>
           </Button>
           <Button
             variant="contained"
@@ -125,9 +125,9 @@ const LoginScreen = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={navigateTasks}
+            onClick={navigateRegister}
           >
-            <Typography>Login</Typography>
+            <Typography>Register</Typography>
           </Button>
         </Box>
       </Box>
