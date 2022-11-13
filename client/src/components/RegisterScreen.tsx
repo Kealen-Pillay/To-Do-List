@@ -32,18 +32,23 @@ const RegisterScreen = () => {
   };
 
   const navigateTasks = (): void => {
+    let pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email && password && confirmPassword) {
-      if (password.length >= 6) {
-        if (confirmPassword === password) {
-          registerUser();
-          navigate("/tasks");
+      if (pattern.test(email)) {
+        if (password.length >= 6) {
+          if (confirmPassword === password) {
+            registerUser();
+            navigate("/tasks");
+          } else {
+            alert(
+              "Your password does not match! Please confirm your passwords match"
+            );
+          }
         } else {
-          alert(
-            "Your password does not match! Please confirm your passwords match"
-          );
+          alert("Your password must contain a minimum of 6 characters!");
         }
       } else {
-        alert("Your password must contain a minimum of 6 characters!");
+        alert("You must provide an email in the format: example@example.com");
       }
     } else {
       alert("Please fill in all fields!");

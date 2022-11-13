@@ -35,8 +35,13 @@ const LoginScreen = () => {
   };
 
   const navigateTasks = (): void => {
+    let pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (email && password) {
-      loginUser();
+      if (pattern.test(email)) {
+        loginUser();
+      } else {
+        alert("You must provide an email in the format: example@example.com");
+      }
     } else {
       alert("Please Provide Both An Email and Password");
     }
