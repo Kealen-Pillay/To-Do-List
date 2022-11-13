@@ -27,16 +27,20 @@ const RegisterScreen = () => {
       setPassword("");
       setConfirmPassword("");
     } catch (error) {
-      alert("Password should contain a minimum of 6 characters!");
+      alert("Error creating account!");
     }
   };
 
   const navigateTasks = (): void => {
-    if (confirmPassword && confirmPassword === password) {
-      registerUser();
-      navigate("/tasks");
+    if (password.length >= 6) {
+      if (confirmPassword === password) {
+        registerUser();
+        navigate("/tasks");
+      } else {
+        alert("Your password does not match! Please confirm your passwords match");
+      }
     } else {
-      alert("Your password does not match!");
+      alert("Your password must contain a minimum of 6 characters!");
     }
   };
 
