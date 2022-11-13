@@ -1,9 +1,19 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const LoginScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const navigateRegister = (): void => {
+    navigate("/register");
+  };
+
+  const navigateTasks = (): void => {
+    navigate("/tasks");
+  };
 
   const styles = {
     input: {
@@ -13,7 +23,7 @@ const LoginScreen = () => {
       border: "1px solid black",
       paddingLeft: "0.5rem",
     },
-  } as const;
+  };
 
   return (
     <Box
@@ -101,6 +111,7 @@ const LoginScreen = () => {
                 backgroundColor: "black",
               },
             }}
+            onClick={navigateRegister}
           >
             <Typography>Register</Typography>
           </Button>
@@ -114,6 +125,7 @@ const LoginScreen = () => {
                 backgroundColor: "black",
               },
             }}
+            onClick={navigateTasks}
           >
             <Typography>Login</Typography>
           </Button>
