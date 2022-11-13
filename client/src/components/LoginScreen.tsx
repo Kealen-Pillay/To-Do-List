@@ -1,9 +1,19 @@
-import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 
 const LoginScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const styles = {
+    input: {
+      borderRadius: 25,
+      height: "35%",
+      width: "100%",
+      border: "1px solid black",
+      paddingLeft: "0.5rem",
+    },
+  } as const;
 
   return (
     <Box
@@ -47,39 +57,28 @@ const LoginScreen = () => {
         </Box>
         <Box
           sx={{
-            width: "40%",
+            width: "50%",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "space-between",
             alignItems: "center",
-            margin: "1%",
+            marginBottom: "5%",
+            height: "25%",
           }}
         >
-          <TextField
-            variant="outlined"
-            label="Username"
+          <input
+            type="text"
+            style={styles.input}
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            sx={{ width: "100%" }}
           />
-        </Box>
-        <Box
-          sx={{
-            width: "40%",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            margin: "1%",
-            marginBottom: "5%",
-          }}
-        >
-          <TextField
-            variant="outlined"
-            label="Password"
+          <input
+            type="text"
+            style={styles.input}
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            sx={{ width: "100%" }}
           />
         </Box>
         <Box
