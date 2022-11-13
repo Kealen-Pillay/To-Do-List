@@ -1,9 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const RegisterScreen = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -18,8 +20,24 @@ const RegisterScreen = () => {
     },
   };
 
+  const registerUser = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      alert("Password should contain a minimum of 6 characters!");
+    }
+  };
+
   const navigateTasks = (): void => {
-    navigate("/tasks");
+    if (confirmPassword && confirmPassword === password) {
+      registerUser();
+      navigate("/tasks");
+    } else {
+      alert("Your password does not match!");
+    }
   };
 
   const navigateLogin = (): void => {
@@ -80,19 +98,19 @@ const RegisterScreen = () => {
           <input
             type="text"
             style={styles.input}
-            placeholder="New Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             style={styles.input}
-            placeholder="New Password"
+            placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             style={styles.input}
             placeholder="Confirm Password"
             value={confirmPassword}

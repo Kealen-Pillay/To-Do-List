@@ -17,6 +17,10 @@ const LoginScreen = () => {
     },
   };
 
+  const loginUser = async () => {
+
+  };
+
   const navigateRegister = (): void => {
     navigate("/register");
   };
@@ -79,12 +83,12 @@ const LoginScreen = () => {
           <input
             type="text"
             style={styles.input}
-            placeholder="Username"
+            placeholder="Email"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             style={styles.input}
             placeholder="Password"
             value={password}

@@ -1,7 +1,9 @@
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 const TaskScreen = () => {
+  const logoutUser = (): void => {};
+
   return (
     <Box
       sx={{
@@ -12,7 +14,11 @@ const TaskScreen = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
-    ></Box>
+    >
+      <Button variant="contained" onClick={logoutUser}>
+        <Typography>Logout</Typography>
+      </Button>
+    </Box>
   );
 };
 
