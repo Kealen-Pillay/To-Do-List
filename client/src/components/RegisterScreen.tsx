@@ -22,7 +22,7 @@ const RegisterScreen = () => {
 
   const registerUser = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       setEmail("");
       setPassword("");
       setConfirmPassword("");
