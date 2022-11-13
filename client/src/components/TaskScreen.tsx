@@ -119,7 +119,7 @@ const TaskScreen = () => {
             opacity: 0.95,
             borderRadius: 5,
             height: "100%",
-            paddingLeft: "1%"
+            paddingLeft: "1%",
           }}
         >
           <CirclePicker circleSize={25} colors={colors} />
