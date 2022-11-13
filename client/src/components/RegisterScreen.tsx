@@ -32,15 +32,21 @@ const RegisterScreen = () => {
   };
 
   const navigateTasks = (): void => {
-    if (password.length >= 6) {
-      if (confirmPassword === password) {
-        registerUser();
-        navigate("/tasks");
+    if (email && password && confirmPassword) {
+      if (password.length >= 6) {
+        if (confirmPassword === password) {
+          registerUser();
+          navigate("/tasks");
+        } else {
+          alert(
+            "Your password does not match! Please confirm your passwords match"
+          );
+        }
       } else {
-        alert("Your password does not match! Please confirm your passwords match");
+        alert("Your password must contain a minimum of 6 characters!");
       }
     } else {
-      alert("Your password must contain a minimum of 6 characters!");
+      alert("Please fill in all fields!");
     }
   };
 
@@ -105,6 +111,7 @@ const RegisterScreen = () => {
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -112,6 +119,7 @@ const RegisterScreen = () => {
             placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -119,6 +127,7 @@ const RegisterScreen = () => {
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
         </Box>
         <Box
