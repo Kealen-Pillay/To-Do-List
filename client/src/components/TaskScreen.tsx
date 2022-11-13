@@ -1,8 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const TaskScreen = () => {
-  const logoutUser = (): void => {};
+  const navigate = useNavigate();
+
+  const logoutUser = async () => {
+    await signOut(auth);
+    navigate("/");
+  };
 
   return (
     <Box
