@@ -3,6 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { toast } from "react-toastify";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -19,14 +20,39 @@ const LoginScreen = () => {
     },
   };
 
+  const successLogin = () =>
+    toast.success("Successfully Logged In", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+  const unsuccessfulLogin = () =>
+    toast.error("No User Exists!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
   const loginUser = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/tasks");
+      successLogin();
       setEmail("");
       setPassword("");
     } catch (error) {
-      alert("No User Exists!");
+      unsuccessfulLogin();
     }
   };
 
@@ -48,114 +74,115 @@ const LoginScreen = () => {
   };
 
   return (
-    <Box
-      sx={{
-        background: "linear-gradient(to right, #ff875c, #eb346b)",
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    
       <Box
         sx={{
-          width: "60%",
-          height: "70%",
-          backgroundColor: "white",
-          opacity: 0.5,
-          borderRadius: 5,
+          background: "linear-gradient(to right, #ff875c, #eb346b)",
+          width: "100vw",
+          height: "100vh",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            height: "20%",
-            width: "40%",
-            marginTop: "5%",
-            marginBottom: "5%",
-          }}
-        >
-          <img src={require("../images/tickIcon.png")} alt="" height="100%" />
-          <Typography sx={{ fontWeight: "bold", fontSize: 60 }}>
-            To Do
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            width: "50%",
+            width: "60%",
+            height: "70%",
+            backgroundColor: "white",
+            opacity: 0.5,
+            borderRadius: 5,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "5%",
-            height: "25%",
-          }}
-        >
-          <input
-            type="text"
-            style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "30%",
-            height: "20%",
-            justifyContent: "space-between",
+            justifyContent: "flex-start",
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
+          <Box
             sx={{
-              backgroundColor: "black",
-              width: "100%",
-              height: "45%",
-              ":hover": {
-                backgroundColor: "black",
-              },
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "20%",
+              width: "40%",
+              marginTop: "5%",
+              marginBottom: "5%",
             }}
-            onClick={navigateTasks}
           >
-            <Typography>Login</Typography>
-          </Button>
-          <Button
-            variant="contained"
+            <img src={require("../images/tickIcon.png")} alt="" height="100%" />
+            <Typography sx={{ fontWeight: "bold", fontSize: 60 }}>
+              To Do
+            </Typography>
+          </Box>
+          <Box
             sx={{
-              backgroundColor: "black",
-              width: "100%",
-              height: "45%",
-              ":hover": {
-                backgroundColor: "black",
-              },
+              width: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "5%",
+              height: "25%",
             }}
-            onClick={navigateRegister}
           >
-            <Typography>Register</Typography>
-          </Button>
+            <input
+              type="text"
+              style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              style={styles.input}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "30%",
+              height: "20%",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "black",
+                width: "100%",
+                height: "45%",
+                ":hover": {
+                  backgroundColor: "black",
+                },
+              }}
+              onClick={navigateTasks}
+            >
+              <Typography>Login</Typography>
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "black",
+                width: "100%",
+                height: "45%",
+                ":hover": {
+                  backgroundColor: "black",
+                },
+              }}
+              onClick={navigateRegister}
+            >
+              <Typography>Register</Typography>
+            </Button>
+          </Box>
         </Box>
       </Box>
-    </Box>
   );
 };
 
