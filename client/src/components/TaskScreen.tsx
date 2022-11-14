@@ -3,11 +3,14 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CirclePicker } from "react-color";
 import AddIcon from "@mui/icons-material/Add";
 
 const TaskScreen = () => {
+  useEffect(() => {
+    //get Tasks here
+  }, []);
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState(["Do Dishes", "Go Gym", "Eat Food"]);
   const colors = [
@@ -61,7 +64,7 @@ const TaskScreen = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         flexDirection: "column",
-        paddingLeft: "1%"
+        paddingLeft: "1%",
       }}
     >
       <Box
@@ -85,16 +88,17 @@ const TaskScreen = () => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: "black",
-            opacity: 1,
+            marginRight: "2%",
+            backgroundColor: "#ff875c",
+            color: "black",
             ":hover": {
-              backgroundColor: "#C192FC",
+              backgroundColor: "#f59371",
               color: "black",
             },
           }}
           onClick={logoutUser}
         >
-          <Typography sx={{ fontWeight: "bold" }}>Logout</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Sign out</Typography>
         </Button>
       </Box>
       <Box
@@ -135,10 +139,10 @@ const TaskScreen = () => {
             height: "50%",
             justifyContent: "space-between",
             borderRadius: 10,
-            backgroundColor: "#1CDDCB",
+            backgroundColor: "#eb346b",
             paddingRight: "2%",
             ":hover": {
-              backgroundColor: "#1CDDCB",
+              backgroundColor: "#eb346b",
               transition: "0.3s",
               transform: "scale(1.1)",
             },
@@ -189,10 +193,10 @@ const TaskScreen = () => {
                   alignItems: "center",
                   opacity: 0.9,
                   paddingLeft: "1%",
-                  border: "2px solid #1CDDCB",
+                  border: "2px solid #eb346b",
                   ":hover": {
-                    backgroundColor: "black"
-                  }
+                    backgroundColor: "black",
+                  },
                 }}
               >
                 <Typography
