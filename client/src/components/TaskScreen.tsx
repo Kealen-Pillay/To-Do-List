@@ -101,7 +101,7 @@ const TaskScreen = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "45%",
+          width: "55%",
           height: "10%",
         }}
       >
@@ -110,7 +110,7 @@ const TaskScreen = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "85%",
+            width: "75%",
             height: "100%",
             paddingLeft: "1%",
             backgroundColor: "#474747",
@@ -127,9 +127,15 @@ const TaskScreen = () => {
           />
           <CirclePicker circleSize={25} colors={colors} />
         </Box>
-        <Fab
+        <Button
           sx={{
+            display: "flex",
+            width: "17%",
+            height: "50%",
+            justifyContent: "space-between",
+            borderRadius: 10,
             backgroundColor: "#1CDDCB",
+            paddingRight: "2%",
             ":hover": {
               backgroundColor: "#1CDDCB",
               transition: "0.3s",
@@ -146,7 +152,10 @@ const TaskScreen = () => {
               },
             }}
           />
-        </Fab>
+          <Typography sx={{ color: "black", paddingTop: "2%" }}>
+            Add Task
+          </Typography>
+        </Button>
       </Box>
     </Box>
   );
