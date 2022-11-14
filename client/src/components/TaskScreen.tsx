@@ -61,6 +61,7 @@ const TaskScreen = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         flexDirection: "column",
+        paddingLeft: "1%"
       }}
     >
       <Box
@@ -79,7 +80,7 @@ const TaskScreen = () => {
             opacity: 0.75,
           }}
         >
-          Welcome, {auth?.currentUser?.email}
+          Tasks
         </Typography>
         <Button
           variant="contained"
@@ -162,13 +163,13 @@ const TaskScreen = () => {
         sx={{
           marginTop: "1%",
           borderRadius: 5,
-          backgroundColor: "white",
+          backgroundColor: "#474747",
           opacity: 0.7,
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "center",
           flexDirection: "column",
-          width: "100%",
+          width: "98%",
           height: "70%",
           paddingTop: "1%",
         }}
@@ -176,18 +177,22 @@ const TaskScreen = () => {
         {tasks.map((task) => {
           return (
             <>
-              <Box
+              <Button
                 sx={{
                   display: "flex",
-                  backgroundColor: "#1e1e1e",
-                  width: "95%",
+                  backgroundColor: "black",
+                  width: "98%",
                   borderRadius: 5,
                   height: "15%",
                   marginBottom: "1%",
                   justifyContent: "flex-start",
                   alignItems: "center",
-                  opacity: 0.8,
+                  opacity: 0.9,
                   paddingLeft: "1%",
+                  border: "2px solid #1CDDCB",
+                  ":hover": {
+                    backgroundColor: "black"
+                  }
                 }}
               >
                 <Typography
@@ -195,7 +200,7 @@ const TaskScreen = () => {
                 >
                   {task}
                 </Typography>
-              </Box>
+              </Button>
             </>
           );
         })}
