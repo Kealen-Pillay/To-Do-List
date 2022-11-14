@@ -44,8 +44,8 @@ const TaskScreen = () => {
     navigate("/");
     toast.success("You have been signed out", {
       position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
+      autoClose: 2000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
@@ -195,7 +195,7 @@ const TaskScreen = () => {
                   paddingLeft: "1%",
                   border: "2px solid #eb346b",
                   ":hover": {
-                    backgroundColor: "black",
+                    backgroundColor: "#1e1e1e",
                   },
                 }}
               >
