@@ -1,4 +1,4 @@
-import { Box, Button, Fab, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 const TaskScreen = () => {
   const [newTask, setNewTask] = useState("");
+  const [tasks, setTasks] = useState(["Do Dishes", "Go Gym", "Eat Food"]);
   const colors = [
     "#f44336",
     "#e91e63",
@@ -60,13 +61,12 @@ const TaskScreen = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         flexDirection: "column",
-        paddingLeft: "1%",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          width: "95%",
+          width: "100%",
           justifyContent: "space-between",
           alignItems: "center",
         }}
@@ -79,7 +79,7 @@ const TaskScreen = () => {
             opacity: 0.75,
           }}
         >
-          Welcome, User
+          Welcome, {auth?.currentUser?.email}
         </Typography>
         <Button
           variant="contained"
@@ -156,6 +156,49 @@ const TaskScreen = () => {
             Add Task
           </Typography>
         </Button>
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: "1%",
+          borderRadius: 5,
+          backgroundColor: "white",
+          opacity: 0.7,
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "100%",
+          height: "70%",
+          paddingTop: "1%",
+        }}
+      >
+        {tasks.map((task) => {
+          return (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  backgroundColor: "#1e1e1e",
+                  width: "95%",
+                  borderRadius: 5,
+                  height: "15%",
+                  marginBottom: "1%",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  opacity: 0.8,
+                  paddingLeft: "1%",
+                }}
+              >
+                <Typography
+                  sx={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+                >
+                  {task}
+                </Typography>
+              </Box>
+            </>
+          );
+        })}
       </Box>
     </Box>
   );
