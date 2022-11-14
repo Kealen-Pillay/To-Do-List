@@ -1,10 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Fab, Typography } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { CirclePicker } from "react-color";
+import AddIcon from "@mui/icons-material/Add";
 
 const TaskScreen = () => {
   const [newTask, setNewTask] = useState("");
@@ -28,7 +29,7 @@ const TaskScreen = () => {
       borderRadius: 25,
       border: "1px solid black",
       paddingLeft: "1rem",
-      width: "40%",
+      width: "50%",
       height: "50%",
     },
   };
@@ -52,19 +53,20 @@ const TaskScreen = () => {
   return (
     <Box
       sx={{
-        background: "linear-gradient(to right, #ff875c, #eb346b)",
+        background: "#212121",
         width: "100vw",
         height: "100vh",
         display: "flex",
         justifyContent: "flex-start",
-        alignItems: "center",
+        alignItems: "flex-start",
         flexDirection: "column",
+        paddingLeft: "1%",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          width: "100%",
+          width: "95%",
           justifyContent: "space-between",
           alignItems: "center",
         }}
@@ -85,45 +87,66 @@ const TaskScreen = () => {
             backgroundColor: "black",
             opacity: 1,
             ":hover": {
-              backgroundColor: "#1e1e1e",
+              backgroundColor: "#C192FC",
+              color: "black",
             },
           }}
           onClick={logoutUser}
         >
-          <Typography>Logout</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Logout</Typography>
         </Button>
       </Box>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
-          width: "100%",
+          width: "45%",
           height: "10%",
-          paddingLeft: "5%",
         }}
       >
-        <input
-          type="text"
-          placeholder="Enter Task"
-          style={styles.input}
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: "#1e1e1e",
-            opacity: 0.95,
-            borderRadius: 5,
+            width: "85%",
             height: "100%",
             paddingLeft: "1%",
+            backgroundColor: "#474747",
+            opacity: 0.95,
+            borderRadius: 5,
           }}
         >
+          <input
+            type="text"
+            placeholder="Enter Task"
+            style={styles.input}
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+          />
           <CirclePicker circleSize={25} colors={colors} />
         </Box>
+        <Fab
+          sx={{
+            backgroundColor: "#1CDDCB",
+            ":hover": {
+              backgroundColor: "#1CDDCB",
+              transition: "0.3s",
+              transform: "scale(1.1)",
+            },
+          }}
+          aria-label="add"
+        >
+          <AddIcon
+            sx={{
+              color: "black",
+              ":hover": {
+                color: "black",
+              },
+            }}
+          />
+        </Fab>
       </Box>
     </Box>
   );
