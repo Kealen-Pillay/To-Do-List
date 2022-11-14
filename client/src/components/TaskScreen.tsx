@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Fab, Typography } from "@mui/material";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { CirclePicker } from "react-color";
 import AddIcon from "@mui/icons-material/Add";
+import CircleIcon from "@mui/icons-material/Circle";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TaskScreen = () => {
   useEffect(() => {
@@ -189,21 +191,51 @@ const TaskScreen = () => {
                   borderRadius: 5,
                   height: "15%",
                   marginBottom: "1%",
-                  justifyContent: "flex-start",
+                  justifyContent: "space-between",
                   alignItems: "center",
                   opacity: 0.9,
                   paddingLeft: "1%",
+                  paddingRight: "1%",
                   border: "2px solid #eb346b",
                   ":hover": {
                     backgroundColor: "#1e1e1e",
                   },
                 }}
               >
-                <Typography
-                  sx={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    width: "90%",
+                  }}
                 >
-                  {task}
-                </Typography>
+                  <CircleIcon />
+                  <Typography
+                    sx={{
+                      color: "white",
+                      fontSize: 20,
+                      fontWeight: "bold",
+                      marginLeft: "1%",
+                    }}
+                  >
+                    {task}
+                  </Typography>
+                </Box>
+                <Fab
+                  color="primary"
+                  aria-label="add"
+                  size="small"
+                  sx={{
+                    backgroundColor: "red",
+                    ":hover": {
+                      backgroundColor: "red",
+                    },
+                  }}
+                >
+                  <DeleteIcon />
+                </Fab>
               </Button>
             </>
           );
