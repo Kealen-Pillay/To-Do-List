@@ -17,6 +17,15 @@ router.post("/", (req, res) => {
     .catch((err) => res.status(400).json({ error: "Unable to add this task" }));
 });
 
+//PUT request
+router.put("/:id", (req, res) => {
+  Task.findByIdAndUpdate(req.params.id, req.body)
+    .then((task) => res.json({ msg: "Updated successfully" }))
+    .catch((err) =>
+      res.status(400).json({ error: "Unable to update the Database" })
+    );
+});
+
 //DELETE request
 router.delete("/:id", (req, res) => {
   Task.findByIdAndDelete(req.params.id, req.body)
