@@ -18,19 +18,9 @@ interface Task {
 }
 
 const TaskScreen = () => {
-  useEffect(() => {
-    const getTasks = async () => {
-      await axios
-        .get("http://localhost:5000/")
-        .then((res) => {
-          setTasks(res.data);
-        })
-        .catch((err) => console.log(err.message));
-    };
-    getTasks();
-  }, []);
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [color, setColor] = useState("#ffffff");
   const colors = [
     "#f44336",
     "#e91e63",
@@ -57,6 +47,20 @@ const TaskScreen = () => {
   };
   const navigate = useNavigate();
 
+  const getTasks = async () => {
+    let user = auth?.currentUser?.email; // Filter get for specific user!
+    await axios
+      .get("http://localhost:5000/")
+      .then((res) => {
+        setTasks(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
   const logoutUser = async () => {
     await signOut(auth);
     navigate("/");
@@ -70,6 +74,23 @@ const TaskScreen = () => {
       progress: undefined,
       theme: "dark",
     });
+  };
+
+  const addNewTask = async () => {
+    let task = {
+      taskName: newTask,
+      color: color,
+      isCompleted: false,
+      owner: auth?.currentUser?.email,
+    };
+    await axios
+      .post("http://localhost:5000/", task)
+      .then((res) => {
+        setNewTask("");
+        setColor("#ffffff");
+        getTasks();
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -148,7 +169,11 @@ const TaskScreen = () => {
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
           />
-          <CirclePicker circleSize={25} colors={colors} />
+          <CirclePicker
+            circleSize={25}
+            colors={colors}
+            onChange={(e) => setColor(e.hex)}
+          />
         </Box>
         <Button
           sx={{
@@ -166,6 +191,7 @@ const TaskScreen = () => {
             },
           }}
           aria-label="add"
+          onClick={addNewTask}
         >
           <AddIcon
             sx={{
@@ -227,13 +253,14 @@ const TaskScreen = () => {
                     width: "90%",
                   }}
                 >
-                  <CircleIcon />
+                  <CircleIcon sx={{ color: task.color }} />
                   <Typography
                     sx={{
                       color: "white",
                       fontSize: 20,
                       fontWeight: "bold",
                       marginLeft: "1%",
+                      textDecoration: task.isCompleted ? "line-through" : "",
                     }}
                   >
                     {task.taskName}
