@@ -11,6 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
 interface Task {
+  _id: string;
   taskName: string;
   color: string;
   isCompleted: boolean;
@@ -89,6 +90,22 @@ const TaskScreen = () => {
       .then((res) => {
         setNewTask("");
         setColor("#ffffff");
+        getTasks();
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  const completeTask = async (task: Task) => {
+    let url = "http://localhost:5000/" + task._id;
+    let updatedTask = {
+      taskName: task.taskName,
+      color: task.color,
+      isCompleted: !task.isCompleted,
+      owner: task.owner,
+    };
+    await axios
+      .put(url, updatedTask)
+      .then((res) => {
         getTasks();
       })
       .catch((err) => console.log(err.message));
@@ -228,6 +245,7 @@ const TaskScreen = () => {
           return (
             <>
               <Button
+                onClick={() => completeTask(task)}
                 sx={{
                   display: "flex",
                   backgroundColor: "black",
