@@ -10,6 +10,13 @@ import CircleIcon from "@mui/icons-material/Circle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
+interface Task {
+  taskName: string;
+  color: string;
+  isCompleted: boolean;
+  owner: string;
+}
+
 const TaskScreen = () => {
   useEffect(() => {
     const getTasks = async () => {
@@ -23,7 +30,7 @@ const TaskScreen = () => {
     getTasks();
   }, []);
   const [newTask, setNewTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const colors = [
     "#f44336",
     "#e91e63",
@@ -190,7 +197,6 @@ const TaskScreen = () => {
         }}
       >
         {tasks.map((task) => {
-          console.log("Task:", task);
           return (
             <>
               <Button
@@ -230,7 +236,7 @@ const TaskScreen = () => {
                       marginLeft: "1%",
                     }}
                   >
-                    {"task"}
+                    {task.taskName}
                   </Typography>
                 </Box>
                 <Fab
