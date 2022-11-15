@@ -77,33 +77,20 @@ const TaskScreen = () => {
   };
 
   const addNewTask = async () => {
-    if (!newTask) {
-      toast.error("You Must Enter A Task", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else {
-      let task = {
-        taskName: newTask,
-        color: color,
-        isCompleted: false,
-        owner: auth?.currentUser?.email,
-      };
-      await axios
-        .post("http://localhost:5000/", task)
-        .then((res) => {
-          setNewTask("");
-          setColor("#ffffff");
-          getTasks();
-        })
-        .catch((err) => console.log(err.message));
-    }
+    let task = {
+      taskName: newTask,
+      color: color,
+      isCompleted: false,
+      owner: auth?.currentUser?.email,
+    };
+    await axios
+      .post("http://localhost:5000/", task)
+      .then((res) => {
+        setNewTask("");
+        setColor("#ffffff");
+        getTasks();
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -195,7 +182,7 @@ const TaskScreen = () => {
             height: "50%",
             justifyContent: "space-between",
             borderRadius: 10,
-            backgroundColor: "#eb346b",
+            backgroundColor: newTask ? "#eb346b" : "#454545",
             paddingRight: "2%",
             ":hover": {
               backgroundColor: "#eb346b",
@@ -205,6 +192,7 @@ const TaskScreen = () => {
           }}
           aria-label="add"
           onClick={addNewTask}
+          disabled={newTask ? false : true}
         >
           <AddIcon
             sx={{
