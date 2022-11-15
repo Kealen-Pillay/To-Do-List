@@ -206,7 +206,7 @@ const TaskScreen = () => {
         <Button
           sx={{
             display: "flex",
-            width: "17%",
+            width: "15%",
             height: "50%",
             justifyContent: "space-between",
             borderRadius: 10,
@@ -265,7 +265,6 @@ const TaskScreen = () => {
                   marginBottom: "1%",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  opacity: 0.9,
                   paddingLeft: "1%",
                   paddingRight: "1%",
                   border: "2px solid #eb346b",
