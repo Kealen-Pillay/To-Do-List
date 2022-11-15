@@ -249,6 +249,7 @@ const TaskScreen = () => {
           width: "98%",
           height: "70%",
           paddingTop: "1%",
+          overflow: "scroll",
         }}
       >
         {tasks.map((task) => {
@@ -261,15 +262,19 @@ const TaskScreen = () => {
                   backgroundColor: "black",
                   width: "98%",
                   borderRadius: 5,
-                  height: "15%",
+                  minHeight: "10%",
+                  height: "10%",
                   marginBottom: "1%",
                   justifyContent: "space-between",
                   alignItems: "center",
                   paddingLeft: "1%",
                   paddingRight: "1%",
-                  border: "2px solid #eb346b",
+                  border: "2px solid",
+                  borderColor: task.color,
                   ":hover": {
-                    backgroundColor: "#1e1e1e",
+                    backgroundColor: "black",
+                    transform: "scale(1.01)",
+                    transition: "0.5s"
                   },
                 }}
               >
