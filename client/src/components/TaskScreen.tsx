@@ -111,6 +111,16 @@ const TaskScreen = () => {
       .catch((err) => console.log(err.message));
   };
 
+  const deleteTask = async (task: Task) => {
+    let url = "http://localhost:5000/" + task._id;
+    await axios
+      .delete(url)
+      .then(() => {
+        getTasks();
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
     <Box
       sx={{
@@ -287,6 +297,7 @@ const TaskScreen = () => {
                   </Typography>
                 </Box>
                 <Fab
+                  onClick={() => deleteTask(task)}
                   color="primary"
                   aria-label="add"
                   size="small"
