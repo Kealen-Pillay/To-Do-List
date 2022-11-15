@@ -48,9 +48,10 @@ const TaskScreen = () => {
   const navigate = useNavigate();
 
   const getTasks = async () => {
-    let user = auth?.currentUser?.email; // Filter get for specific user!
+    let user = auth?.currentUser?.email;
+    let url = "http://localhost:5000/?owner=" + user;
     await axios
-      .get("http://localhost:5000/")
+      .get(url)
       .then((res) => {
         setTasks(res.data);
       })
