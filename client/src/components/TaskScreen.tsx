@@ -66,7 +66,7 @@ const TaskScreen = () => {
     navigate("/");
     toast.success("You have been signed out", {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 1000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
@@ -77,20 +77,33 @@ const TaskScreen = () => {
   };
 
   const addNewTask = async () => {
-    let task = {
-      taskName: newTask,
-      color: color,
-      isCompleted: false,
-      owner: auth?.currentUser?.email,
-    };
-    await axios
-      .post("http://localhost:5000/", task)
-      .then((res) => {
-        setNewTask("");
-        setColor("#ffffff");
-        getTasks();
-      })
-      .catch((err) => console.log(err.message));
+    if (!newTask) {
+      toast.error("You Must Enter A Task", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      let task = {
+        taskName: newTask,
+        color: color,
+        isCompleted: false,
+        owner: auth?.currentUser?.email,
+      };
+      await axios
+        .post("http://localhost:5000/", task)
+        .then((res) => {
+          setNewTask("");
+          setColor("#ffffff");
+          getTasks();
+        })
+        .catch((err) => console.log(err.message));
+    }
   };
 
   return (
