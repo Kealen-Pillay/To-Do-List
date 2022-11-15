@@ -23,8 +23,8 @@ const LoginScreen = () => {
   const successLogin = () =>
     toast.success("Successfully Logged In", {
       position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
@@ -35,8 +35,8 @@ const LoginScreen = () => {
   const unsuccessfulLogin = () =>
     toast.error("No User Exists!", {
       position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
