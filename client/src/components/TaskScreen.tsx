@@ -249,6 +249,7 @@ const TaskScreen = () => {
           width: "98%",
           height: "70%",
           paddingTop: "1%",
+          overflow: "scroll"
         }}
       >
         {tasks.map((task) => {
@@ -261,7 +262,8 @@ const TaskScreen = () => {
                   backgroundColor: "black",
                   width: "98%",
                   borderRadius: 5,
-                  height: "15%",
+                  minHeight: "10%",
+                  height: "10%",
                   marginBottom: "1%",
                   justifyContent: "space-between",
                   alignItems: "center",
