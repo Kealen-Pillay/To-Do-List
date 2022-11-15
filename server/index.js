@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
-app.use("/tasks", tasks);
+app.use("/", tasks);
 
 const CONNECTION_URL =
   "mongodb+srv://test:test@to-do-app.ygzzapa.mongodb.net/?retryWrites=true&w=majority";

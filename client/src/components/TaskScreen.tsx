@@ -8,13 +8,22 @@ import { CirclePicker } from "react-color";
 import AddIcon from "@mui/icons-material/Add";
 import CircleIcon from "@mui/icons-material/Circle";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
 
 const TaskScreen = () => {
   useEffect(() => {
-    //get Tasks here
+    const getTasks = async () => {
+      await axios
+        .get("http://localhost:5000/")
+        .then((res) => {
+          setTasks(res.data);
+        })
+        .catch((err) => console.log(err.message));
+    };
+    getTasks();
   }, []);
   const [newTask, setNewTask] = useState("");
-  const [tasks, setTasks] = useState(["Do Dishes", "Go Gym", "Eat Food"]);
+  const [tasks, setTasks] = useState([]);
   const colors = [
     "#f44336",
     "#e91e63",
@@ -181,6 +190,7 @@ const TaskScreen = () => {
         }}
       >
         {tasks.map((task) => {
+          console.log("Task:", task);
           return (
             <>
               <Button
@@ -220,7 +230,7 @@ const TaskScreen = () => {
                       marginLeft: "1%",
                     }}
                   >
-                    {task}
+                    {"task"}
                   </Typography>
                 </Box>
                 <Fab
