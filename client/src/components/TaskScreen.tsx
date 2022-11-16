@@ -252,72 +252,73 @@ const TaskScreen = () => {
           overflow: "scroll",
         }}
       >
-        {tasks.map((task) => {
-          return (
-            <>
-              <Button
-                onClick={() => completeTask(task)}
-                sx={{
-                  display: "flex",
-                  backgroundColor: "black",
-                  width: "98%",
-                  borderRadius: 5,
-                  minHeight: "15%",
-                  height: "15%",
-                  marginBottom: "1%",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingLeft: "1%",
-                  paddingRight: "1%",
-                  border: "2px solid",
-                  borderColor: "#eb346b",
-                  ":hover": {
-                    backgroundColor: "black",
-                    transform: "scale(1.01)",
-                    transition: "0.5s",
-                  },
-                }}
-              >
-                <Box
+        {tasks &&
+          tasks.map((task) => {
+            return (
+              <>
+                <Button
+                  onClick={() => completeTask(task)}
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-start",
+                    backgroundColor: "black",
+                    width: "98%",
+                    borderRadius: 5,
+                    minHeight: "15%",
+                    height: "15%",
+                    marginBottom: "1%",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    flexDirection: "row",
-                    width: "90%",
-                  }}
-                >
-                  <CircleIcon sx={{ color: task.color }} />
-                  <Typography
-                    sx={{
-                      color: "white",
-                      fontSize: 20,
-                      fontWeight: "bold",
-                      marginLeft: "1%",
-                      textDecoration: task.isCompleted ? "line-through" : "",
-                    }}
-                  >
-                    {task.taskName}
-                  </Typography>
-                </Box>
-                <Fab
-                  onClick={() => deleteTask(task)}
-                  color="primary"
-                  aria-label="add"
-                  size="small"
-                  sx={{
-                    backgroundColor: "red",
+                    paddingLeft: "1%",
+                    paddingRight: "1%",
+                    border: "2px solid",
+                    borderColor: "#eb346b",
                     ":hover": {
-                      backgroundColor: "red",
+                      backgroundColor: "black",
+                      transform: "scale(1.01)",
+                      transition: "0.5s",
                     },
                   }}
                 >
-                  <DeleteIcon />
-                </Fab>
-              </Button>
-            </>
-          );
-        })}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      flexDirection: "row",
+                      width: "90%",
+                    }}
+                  >
+                    <CircleIcon sx={{ color: task.color }} />
+                    <Typography
+                      sx={{
+                        color: "white",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        marginLeft: "1%",
+                        textDecoration: task.isCompleted ? "line-through" : "",
+                      }}
+                    >
+                      {task.taskName}
+                    </Typography>
+                  </Box>
+                  <Fab
+                    onClick={() => deleteTask(task)}
+                    color="primary"
+                    aria-label="add"
+                    size="small"
+                    sx={{
+                      backgroundColor: "red",
+                      ":hover": {
+                        backgroundColor: "red",
+                      },
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Fab>
+                </Button>
+              </>
+            );
+          })}
       </Box>
     </Box>
   );
