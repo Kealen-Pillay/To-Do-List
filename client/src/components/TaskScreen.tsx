@@ -206,7 +206,7 @@ const TaskScreen = () => {
         <Button
           sx={{
             display: "flex",
-            width: "15%",
+            width: "17%",
             height: "50%",
             justifyContent: "space-between",
             borderRadius: 10,
@@ -262,19 +262,19 @@ const TaskScreen = () => {
                   backgroundColor: "black",
                   width: "98%",
                   borderRadius: 5,
-                  minHeight: "10%",
-                  height: "10%",
+                  minHeight: "15%",
+                  height: "15%",
                   marginBottom: "1%",
                   justifyContent: "space-between",
                   alignItems: "center",
                   paddingLeft: "1%",
                   paddingRight: "1%",
                   border: "2px solid",
-                  borderColor: task.color,
+                  borderColor: "#eb346b",
                   ":hover": {
                     backgroundColor: "black",
                     transform: "scale(1.01)",
-                    transition: "0.5s"
+                    transition: "0.5s",
                   },
                 }}
               >
